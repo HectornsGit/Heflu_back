@@ -1,21 +1,17 @@
 import insertUserModel from "../../models/users/insertUserModel.js"
-
+import newUserSchema from "../../schemas/newUserSchema.js"
+import validateSchema from "../../scripts/validateSchema.js"
 const newUserController = async (req, res, next) => {
     try {
-        const { name, email, bio, avatar, password } = req.body
-        const registrationCode = "patata"
+        const newUserData = await req.body
+        const registration_code = "patata"
 
-        await insertUserModel(
-            name,
-            email,
-            bio,
-            avatar,
-            password,
-            registrationCode
-        )
+        await validateSchema(newUserSchema, req.body)
+
+        await insertUserModel(newUserData, registration_code)
+        res.status(200).send({ status: "ok", message: "Usuario creado" })
     } catch (error) {
         next(error)
     }
-    res.send({ status: "ok", message: "Usuario creado" })
 }
 export default newUserController
