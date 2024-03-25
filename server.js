@@ -1,4 +1,5 @@
 import express from "express"
+import fileUpload from "express-fileupload"
 import cors from "cors"
 import morgan from "morgan"
 
@@ -10,6 +11,7 @@ import propertiesRoutes from "./api/propertiesRoutes.js"
 const app = express()
 
 app.use(express.json())
+app.use(fileUpload())
 app.use(cors())
 app.use(morgan("common"))
 
@@ -22,7 +24,7 @@ app.use((req, res) => {
 })
 
 app.use((err, req, res, next) => {
-    res.status(err.httpStatus).send({
+    res.status(err.httpStatus || 500).send({
         status: err.httpStatus,
         message: err.message,
     })
