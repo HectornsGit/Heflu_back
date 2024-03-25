@@ -1,13 +1,8 @@
 import getDb from "../../config/getDb.js"
+import generateError from "../../scripts/generateError.js"
 
-const insertUserModel = async (
-    name,
-    email,
-    bio,
-    avatar,
-    password,
-    registrationCode
-) => {
+const insertUserModel = async (newUserData, registrationCode) => {
+    const { name, email, bio, avatar, password } = newUserData
     let connection
     try {
         connection = await getDb()
@@ -18,12 +13,11 @@ const insertUserModel = async (
         )
 
         if (users.length > 0) {
-            const error = new Error("Ese email ya está registrado.")
-            error.statusCode = "409"
+            throw generateError(409, "Ese email ya está registrado")
         }
 
         await connection.query(
-            `INSERT INTO users (email, name, bio, avatar, password, registrationCode) VALUES(?, ?, ?, ?, ?, ?)`,
+            `INSERT INTO users (email, name, bio, avatar, password, registration_code) VALUES(?, ?, ?, ?, ?, ?)`,
             [email, name, bio, avatar, password, registrationCode]
         )
     } finally {

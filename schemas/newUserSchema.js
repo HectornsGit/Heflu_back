@@ -15,7 +15,7 @@ const newUserSchema = joi.object({
         .required()
         .messages(joiErrorMessages),
     bio: joi.string().required().messages(joiErrorMessages),
-    avatar: imgSchema.messages(joiErrorMessages),
+    avatar: imgSchema.required().messages(joiErrorMessages),
 })
 
 export default newUserSchema
