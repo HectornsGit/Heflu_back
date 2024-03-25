@@ -7,11 +7,11 @@
     "imports": {
         "#config/*": "./config/*.js",
         "#api/*": "./api/*.js",
-        "#controllers": "./controllers/*/*.js",
-        "#middlewares": "./middlewares/*.js",
-        "#models": "./models/*/*.js",
-        "#public": "./public/",
-        "#scripts": "./scripts/*.js"
+        "#controllers/*/*": "./controllers/*/*.js",
+        "#middlewares/*": "./middlewares/*.js",
+        "#models/*": "./models/*/*.js",
+        "#public/*": "./public/*",
+        "#scripts/*": "./scripts/*.js"
     },
     "scripts": {
         "dev": "nodemon server.js",
