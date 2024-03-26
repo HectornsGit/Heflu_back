@@ -1,4 +1,5 @@
 import bcrypt from "bcrypt"
+import { randomUUID } from "crypto"
 
 import insertUserModel from "../../models/users/insertUserModel.js"
 import selectUserByEmailModel from "../../models/users/selectUserByEmailModel.js"
@@ -8,6 +9,7 @@ import validateSchema from "../../scripts/validateSchema.js"
 
 import generateError from "../../scripts/generateError.js"
 import saveImage from "../../scripts/saveImage.js"
+import sendRegistrationCodeEmail from "../../scripts/sendRegistrationCodeEmail.js"
 
 const newUserController = async (req, res, next) => {
     try {
@@ -16,7 +18,7 @@ const newUserController = async (req, res, next) => {
         newUserData.avatar = req.files?.avatar
         let avatarName
 
-        const registration_code = "patata"
+        const registration_code = randomUUID()
 
         //---- Comprobamos si está ya registrado ----//
         const sameEmailUsers = await selectUserByEmailModel(req.body.email)
@@ -39,6 +41,9 @@ const newUserController = async (req, res, next) => {
 
         //---- Inserción en la base de datos ----////
         await insertUserModel(newUserData, registration_code)
+
+        //TO DO: Send registration_code
+        sendRegistrationCodeEmail(newUserData.email, registration_code)
 
         res.status(200).send({ status: "ok", message: "Usuario creado" })
     } catch (error) {
