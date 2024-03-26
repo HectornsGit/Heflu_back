@@ -28,12 +28,13 @@ const newUserController = async (req, res, next) => {
         await validateSchema(newUserSchema, newUserData)
 
         //----Encriptado de la contraseña ----//
-        newUserData.password = bcrypt.hash(newUserData.password, 10)
+        newUserData.password = await bcrypt.hash(newUserData.password, 10)
 
         //---- Guardado de la imagen en el servidor ----///
         if (req.files) {
             avatarName = await saveImage(req.files?.avatar)
-            newUserData.avatar = avatarName
+            console.log(avatarName)
+            newUserData.avatarName = avatarName
         }
 
         //---- Inserción en la base de datos ----////
