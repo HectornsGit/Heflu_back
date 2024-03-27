@@ -11,7 +11,7 @@ export const main = async () => {
         console.log("Borrando tablas si existen...")
 
         await connection.query(
-            "DROP TABLE IF EXISTS bookings, reviews, properties, users"
+            "DROP TABLE IF EXISTS bookings, reviews, properties_images, images, properties, users"
         )
 
         console.log("Creando tablas si no existen...")
@@ -42,7 +42,6 @@ export const main = async () => {
               location VARCHAR(50) NULL,
               country VARCHAR(50) NULL,
               price DECIMAL(6,2) NULL,
-              image VARCHAR(100),
               area INT UNSIGNED NOT NULL,
               bedrooms INT UNSIGNED NOT NULL,
               bathrooms INT UNSIGNED NOT NULL,
@@ -50,6 +49,29 @@ export const main = async () => {
               modified_at DATETIME NULL ON UPDATE CURRENT_TIMESTAMP,
               owner_id INT UNSIGNED NOT NULL,
               FOREIGN KEY (owner_id) REFERENCES users (id)
+                ON DELETE CASCADE
+                ON UPDATE CASCADE
+            )
+        `)
+
+        console.log("---Creando tabla images---")
+        await connection.query(`
+            CREATE TABLE IF NOT EXISTS images (
+              id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+              name VARCHAR(150) NOT NULL
+            )
+        `)
+
+        console.log("---Creando tabla properties_images---")
+        await connection.query(`
+            CREATE TABLE IF NOT EXISTS properties_images (
+              id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+              property_id INT UNSIGNED NOT NULL,
+              image_id INT UNSIGNED NOT NULL,
+              FOREIGN KEY (property_id) REFERENCES properties (id)
+                ON DELETE CASCADE
+                ON UPDATE CASCADE, 
+              FOREIGN KEY (image_id) REFERENCES images (id)
                 ON DELETE CASCADE
                 ON UPDATE CASCADE
             )
