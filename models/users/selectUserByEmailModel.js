@@ -6,7 +6,7 @@ const selectUserByEmailModel = async (email) => {
         connection = await getDb()
 
         let [users] = await connection.query(
-            `SELECT id FROM users WHERE email = ?`,
+            `SELECT * FROM users WHERE email = ?`,
             [email]
         )
         return users
