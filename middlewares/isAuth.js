@@ -1,11 +1,11 @@
-import { SECRET } from "../config/env"
-import generateError from "../scripts/generateError"
+import { SECRET } from "../config/env.js"
+import generateError from "../scripts/generateError.js"
 import jwt from "jsonwebtoken"
 
 const isAuth = (req, res, next) => {
     try {
         const { authorization } = req.headers
-        if (authorization === false) return next()
+        if (!authorization) return next()
 
         let tokenInfo
 
