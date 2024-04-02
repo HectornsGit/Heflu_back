@@ -20,29 +20,29 @@ const newUserController = async (req, res, next) => {
 
         const registration_code = randomUUID()
 
-        //---- Comprobamos si está ya registrado ----//
+        //---- Comprobación de usuarios duplicados ----//
         const sameEmailUsers = await selectUserByEmailModel(req.body.email)
         if (sameEmailUsers.length > 0) {
             throw generateError(409, "Ese email ya está registrado")
         }
 
-        //---- Esquemas de JOI.----//
+        //---- Esquemas de JOI. ----//
         await validateSchema(newUserSchema, newUserData)
 
-        //----Encriptado de la contraseña ----//
+        //---- Encriptado de la contraseña ----//
         newUserData.password = await bcrypt.hash(newUserData.password, 10)
 
-        //---- Guardado de la imagen en el servidor ----///
+        //---- Guardado de la imagen en el servidor ----//
         if (req.files) {
-            avatarName = await saveImage(req.files?.avatar)
+            avatarName = await saveImage(req.files?.avatar, 180)
             console.log(avatarName)
             newUserData.avatarName = avatarName
         }
 
-        //---- Inserción en la base de datos ----////
+        //---- Inserción en la base de datos ----//
         await insertUserModel(newUserData, registration_code)
 
-        //TO DO: Send registration_code
+        //---- Envío de el email de activación de cuenta al usuario. ----//
         sendRegistrationCodeEmail(newUserData.email, registration_code)
 
         res.status(200).send({ status: "ok", message: "Usuario creado" })

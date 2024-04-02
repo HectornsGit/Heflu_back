@@ -1,0 +1,64 @@
+import insertImageModel from "../../models/images/insertImageModel.js"
+import insertPropertyModel from "../../models/properties/insertPropertyModel.js"
+import insertImagePropertyModel from "../../models/properties_images/insertPropertyImageModel.js"
+import generateError from "../../scripts/generateError.js"
+
+import saveImage from "../../scripts/saveImage.js"
+const newPropertyController = async (req, res, next) => {
+    try {
+        const { id } = req.user
+        let newPropertyData = req.body
+        //---- TO DO: Comprobación de propiedad duplicada ----//
+        /*const sameProperty = await selectPropertyByAddressModel(req.body.address)
+
+        if (sameProperty.length > 0) {
+            throw generateError(409, "Esa propiedad ya está registrada")
+        }*/
+
+        //---- Esquemas de JOI.----//
+        //await validateSchema(newPropertySchema, newPropertyData)
+
+        //---- Guardado de las imágenes en el servidor ----///
+        let images = []
+        let imageNames
+
+        // Comprueba si tiene imágenes.
+        if (req.files) {
+            // Añadimos las imágenes a un array.
+            for (let file of Object.values(req.files)) {
+                images.push(file)
+            }
+            // Recorremos las imágenes con un map y las vamos guardando a la vez que guardamos su nombre en una nueva variable.
+            imageNames = images.map(async (image) => {
+                const newImage = await saveImage(image)
+                return newImage
+            })
+
+            //---- Inserción en la base de datos ----////
+
+            // Inserción de la propiedad a la tabla de propiedades.
+            const newPropertyID = await insertPropertyModel(newPropertyData, id)
+
+            // Inserción de las imágenes a la tabla de imágenes.
+            const imageIds = imageNames.map(async (name) => {
+                return await insertImageModel(name)
+            })
+
+            // Vinculación de imágenes con las propiedades.
+            imageIds.forEach(async (id) =>
+                insertImagePropertyModel(await id, newPropertyID)
+            )
+
+            res.status(200).send({
+                status: "ok",
+                message: "Propiedad registrada",
+            })
+        }
+
+        // Devuelve un bad request si no las tiene.
+        throw generateError(400, "Necesitas al menos añadir una imagen")
+    } catch (error) {
+        next(error)
+    }
+}
+export default newPropertyController
