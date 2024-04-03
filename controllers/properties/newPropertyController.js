@@ -63,10 +63,10 @@ const newPropertyController = async (req, res, next) => {
                 status: "ok",
                 message: "Propiedad registrada",
             })
+        } else {
+            // Devuelve un bad request si no las tiene.
+            throw generateError(400, "Necesitas al menos añadir una imagen")
         }
-
-        // Devuelve un bad request si no las tiene.
-        throw generateError(400, "Necesitas al menos añadir una imagen")
     } catch (error) {
         next(error)
     }
