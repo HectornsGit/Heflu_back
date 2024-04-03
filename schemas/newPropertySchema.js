@@ -1,6 +1,5 @@
 import joi from "joi"
 import joiErrorMessages from "./joiErrorMessages.js"
-import imgSchema from "../imgSchema.js"
 
 const newPropertySchema = joi.object({
     name: joi.string().required().messages(joiErrorMessages),
@@ -12,7 +11,6 @@ const newPropertySchema = joi.object({
     location: joi.string().max(50).required().messages(joiErrorMessages),
     country: joi.string().max(50).required().messages(joiErrorMessages),
     price: joi.number().required().messages(joiErrorMessages),
-    image: imgSchema.required().messages(joiErrorMessages),
     area: joi.number().required().messages(joiErrorMessages),
     bedrooms: joi.number().required().messages(joiErrorMessages),
     bathrooms: joi.number().required().messages(joiErrorMessages),
