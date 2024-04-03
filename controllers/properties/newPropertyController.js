@@ -1,9 +1,14 @@
 import insertImageModel from "../../models/images/insertImageModel.js"
 import insertPropertyModel from "../../models/properties/insertPropertyModel.js"
 import insertImagePropertyModel from "../../models/properties_images/insertPropertyImageModel.js"
-import generateError from "../../scripts/generateError.js"
 
+import validateSchema from "../../scripts/validateSchema.js"
+import newPropertySchema from "../../schemas/newPropertySchema.js"
+import imgSchema from "../../schemas/imgSchema.js"
+
+import generateError from "../../scripts/generateError.js"
 import saveImage from "../../scripts/saveImage.js"
+
 const newPropertyController = async (req, res, next) => {
     try {
         const { id } = req.user
@@ -16,7 +21,7 @@ const newPropertyController = async (req, res, next) => {
         }*/
 
         //---- Esquemas de JOI.----//
-        //await validateSchema(newPropertySchema, newPropertyData)
+        await validateSchema(newPropertySchema, newPropertyData)
 
         //---- Guardado de las imágenes en el servidor ----///
         let images = []
@@ -28,6 +33,11 @@ const newPropertyController = async (req, res, next) => {
             for (let file of Object.values(req.files)) {
                 images.push(file)
             }
+
+            for (let image of images) {
+                await validateSchema(imgSchema, image)
+            }
+
             // Recorremos las imágenes con un map y las vamos guardando a la vez que guardamos su nombre en una nueva variable.
             imageNames = images.map(async (image) => {
                 const newImage = await saveImage(image)
