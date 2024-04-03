@@ -137,7 +137,7 @@ export const backupDb = async () => {
 
         console.log("---Añadiendo registros a la tabla properties---")
         await connection.query(`
-            INSERT INTO properties (id, name, description, type, location, country, price, area, bedrooms, bathrooms, created_at, modified_at, owner_id)
+            INSERT INTO properties (id, name, description, type, country, location, price, area, bedrooms, bathrooms, created_at, modified_at, owner_id)
             VALUES
             (1, 'Maravilloso apartamento', 'Apartamento situado en el centro de Sevilla, perfecto para uso turístico.', 'Apartamento', 'España', 'Sevilla', 80, 78, 2, 2, NOW(), NULL, 1),
             (2, 'Apartamento en pleno centro', 'A 1,5km del Boston Common, este apartamento es perfecto para conocer la ciudad.', 'Apartamento', 'Estados Unidos', 'Bostón', 150, 90, 3, 2, NOW(), NULL, 2),
@@ -262,11 +262,11 @@ export const backupDb = async () => {
       INSERT INTO reviews (id, comment, rating, is_owner, created_at, modified_at, booking_id)
       VALUES
       (1, 'Casero agradable y la casa estaba impecable. Muy recomendable', '5', 0, NOW(), NULL, 20),
-      (2, 'Inquilino muy agradable y limpio.', '5', 1, NOW(), NULL, 20),
-      (3, 'Muy buena propiedad, aunque había muchos mosquitos.', '4', 0, NOW(), NULL, 23),
-      (4, 'El inquilino no fue muy agradable a la entrada y se quejaba mucho.', '3', 1, NOW(), NULL, 23),
-      (5, 'Puntual y muy limpio.', '5', 1, NOW(), NULL, 24),
-      (6, 'Propiedad estupenda, tranquila y muy bien cuidada.', '4', 0, NOW(), NULL, 22);  
+      (2, 'Inquilino muy agradable y limpio.', '4', 1, NOW(), NULL, 20),
+      (3, 'Muy buena propiedad, aunque había muchos mosquitos.', '3', 0, NOW(), NULL, 23),
+      (4, 'El inquilino no fue muy agradable a la entrada y se quejaba mucho.', '2', 1, NOW(), NULL, 23),
+      (5, 'Todo muy limpio pero llegó una hora tarde.', '3', 1, NOW(), NULL, 24),
+      (6, 'Propiedad estupenda, tranquila y muy bien cuidada.', '5', 0, NOW(), NULL, 22);  
     `)
 
         console.log("¡Registros añadidos con éxito!")
