@@ -4,10 +4,11 @@ import cors from "cors"
 import morgan from "morgan"
 
 import { PORT } from "#config/env"
+import isAuth from "#middlewares/isAuth"
 
 import userRoutes from "#api/userRoutes"
 import propertiesRoutes from "#api/propertiesRoutes"
-import isAuth from "#middlewares/isAuth"
+import bookingsRoutes from "#api/bookingsRoutes"
 
 const app = express()
 
@@ -16,16 +17,21 @@ app.use(fileUpload())
 app.use(cors())
 app.use(morgan("common"))
 
+// Middleware que gestiona el token
 app.use(isAuth)
 
+//--- Rutas ---///
 app.use("/users", userRoutes)
 app.use("/properties", propertiesRoutes)
+app.use("/bookings", bookingsRoutes)
 
+// Middleware ruta no encontrada
 app.use((req, res) => {
     res.status(404)
     res.send({ status: 404, message: "Página no encontrada" })
 })
 
+// Middlewawre de error
 app.use((err, req, res, next) => {
     res.status(err.httpStatus || 500).send({
         status: err.httpStatus,
