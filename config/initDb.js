@@ -82,6 +82,7 @@ export const main = async () => {
               id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
               inicial_date DATETIME NULL,
               end_date DATETIME NULL,
+              is_confirmed TINYINT UNSIGNED NOT NULL DEFAULT 0,
               created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
               tenant_id INT UNSIGNED NOT NULL,
               FOREIGN KEY (tenant_id) REFERENCES users (id)
