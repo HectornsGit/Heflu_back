@@ -24,7 +24,7 @@ export const main = async () => {
               name VARCHAR(30) NOT NULL,
               password VARCHAR(100) NOT NULL,
               avatar VARCHAR(100) NULL,
-              bio VARCHAR(200) NULL,
+              bio VARCHAR(500) NULL,
               created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
               modified_at DATETIME NULL ON UPDATE CURRENT_TIMESTAMP,
               registration_code VARCHAR(100) NULL,
@@ -37,7 +37,7 @@ export const main = async () => {
             CREATE TABLE IF NOT EXISTS properties (
               id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
               name VARCHAR(150) NOT NULL,
-              description VARCHAR(200) NOT NULL,
+              description VARCHAR(1000) NOT NULL,
               type ENUM('Chalet', 'Apartamento', 'Casa rural', 'Otros') NOT NULL,
               location VARCHAR(50) NULL,
               country VARCHAR(50) NULL,
