@@ -230,7 +230,7 @@ export const backupDb = async () => {
 
         console.log("---Añadiendo registros a la tabla bookings---")
         await connection.query(`
-            INSERT INTO bookings (id, inicial_date, end_date, is_confirmed, created_at, tenant_id, property_id)
+            INSERT INTO bookings (id, starting_date, ending_date, is_confirmed, created_at, tenant_id, property_id)
             VALUES
             (1, '2024-04-26', '2024-04-28', 1, NOW(), 2, 1),
             (2, '2024-04-15', '2024-04-21', 1, NOW(), 3, 11),
