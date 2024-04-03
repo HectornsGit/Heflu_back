@@ -15,7 +15,8 @@
     },
     "scripts": {
         "dev": "nodemon server.js",
-        "initDb": "node ./config/initDb.js"
+        "initDb": "node ./config/initDb.js",
+        "postinitDb": "node ./config/backupDb.js"
     },
     "keywords": [],
     "author": "",
