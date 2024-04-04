@@ -18,6 +18,7 @@ const selectAllPropertiesModel = async () => {
             FROM reviews r, bookings b, properties p
             WHERE p.owner_id = u.id
             AND p.id = b.property_id
+            AND r.is_owner != 1
             AND b.id = r.booking_id), 1) AS media_rating
           FROM properties p
           LEFT JOIN properties_images x ON p.id=x.property_id
