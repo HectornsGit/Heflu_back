@@ -1,6 +1,8 @@
 import selectPropertyByIdModel from "../../models/properties/selectPropertyByIdModel.js"
+import selectUserByIdModel from "../../models/users/selectUserByIdModel.js"
 import insertBookingModel from "../../models/bookings/insertBookingModel.js"
 import generateError from "../../scripts/generateError.js"
+import sendBookingNotificationEmail from "../../scripts/sendBookingConfirmationEmail.js"
 
 const newBookingController = async (req, res, next) => {
     try {
@@ -11,7 +13,7 @@ const newBookingController = async (req, res, next) => {
         }
 
         //---- Comprobación de propietario de la reserva ----//
-        const property = await selectPropertyByIdModel(req.id)
+        const [property] = await selectPropertyByIdModel(req.body.id)
 
         if (property.owner_id === req.user.id) {
             throw generateError(400, "No puedes reservar tus propios inmuebles")
@@ -20,7 +22,7 @@ const newBookingController = async (req, res, next) => {
         //---- Comprobación de disponibilidad de la reserva ----//
 
         //---- dueño ----//
-        //const owner = await selectUserByIdModel(property.owner_id)
+        const [owner] = await selectUserByIdModel(property.owner_id)
 
         //---- usuario ----//
         //const tennant = await selectUserByIdModel(req.user.id)
@@ -29,8 +31,10 @@ const newBookingController = async (req, res, next) => {
 
         //---- Inserción en la base de datos ----//
         await insertBookingModel(bookingData)
-        //---- Envío de el email de activación/cancelación al dueño de la reserva. ----//
-        //sendBookingConfirmationEmail(owner.mail)
+
+        //---- Envío de el email de notificación al dueño de la reserva. ----//
+        sendBookingNotificationEmail(owner.email, property)
+
         res.status(200).send({
             status: "ok",
             message:
