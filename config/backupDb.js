@@ -233,16 +233,16 @@ export const backupDb = async () => {
             INSERT INTO bookings (id, starting_date, ending_date, is_confirmed, created_at, tenant_id, property_id)
             VALUES
             (1, '2024-04-26', '2024-04-28', 1, NOW(), 2, 1),
-            (2, '2024-04-15', '2024-04-21', 1, NOW(), 3, 11),
+            (2, '2024-04-15', '2024-04-21', 1, NOW(), 2, 11),
             (3, '2024-04-26', '2024-04-28', 1, NOW(), 4, 11),
             (4, '2024-04-22', '2024-04-24', 1, NOW(), 5, 3),
             (5, '2024-04-15', '2024-04-17', 1, NOW(), 6, 2),
             (6, '2024-05-01', '2024-04-05', 1, NOW(), 7, 9),
             (7, '2024-04-25', '2024-04-28', 1, NOW(), 7, 3),
-            (8, '2024-05-03', '2024-05-05', 1, NOW(), 3, 4),
+            (8, '2024-05-03', '2024-05-05', 1, NOW(), 6, 4),
             (9, '2024-05-02', '2024-05-05', 1, NOW(), 7, 11),
             (10, '2024-05-10', '2024-05-12', 1, NOW(), 4, 6),
-            (11, '2024-04-26', '2024-04-28', 0, NOW(), 3, 6),
+            (11, '2024-04-26', '2024-04-28', 0, NOW(), 6, 6),
             (12, '2024-04-15', '2024-04-17', 0, NOW(), 2, 6),
             (13, '2024-05-10', '2024-05-12', 0, NOW(), 5, 4),
             (14, '2024-05-17', '2024-05-19', 0, NOW(), 4, 2),
@@ -255,7 +255,9 @@ export const backupDb = async () => {
             (21, '2024-03-01', '2024-03-03', 1, NOW(), 2, 11),
             (22, '2024-02-01', '2024-02-08', 1, NOW(), 2, 6),
             (23, '2024-03-14', '2024-03-21', 1, NOW(), 7, 6),
-            (24, '2024-03-13', '2024-03-21', 1, NOW(), 5, 8);
+            (24, '2024-03-13', '2024-03-21', 1, NOW(), 5, 8),
+            (25, '2024-01-10', '2024-01-15', 1, NOW(), 6, 1),
+            (26, '2024-01-10', '2024-01-15', 1, NOW(), 1, 5);
        `)
         console.log("---Añadiendo registros a la tabla reviews---")
         await connection.query(`
@@ -266,7 +268,9 @@ export const backupDb = async () => {
       (3, 'Muy buena propiedad, aunque había muchos mosquitos.', '3', 0, NOW(), NULL, 23),
       (4, 'El inquilino no fue muy agradable a la entrada y se quejaba mucho.', '2', 1, NOW(), NULL, 23),
       (5, 'Todo muy limpio pero llegó una hora tarde.', '3', 1, NOW(), NULL, 24),
-      (6, 'Propiedad estupenda, tranquila y muy bien cuidada.', '5', 0, NOW(), NULL, 22);  
+      (6, 'Propiedad estupenda, tranquila y muy bien cuidada.', '5', 0, NOW(), NULL, 22),
+      (7, 'El casero fue muy majo y atento.', '4', 0, NOW(), NULL, 25),
+      (8, 'El inquilino fue puntual y respetuoso.', '4', 1, NOW(), NULL, 26);   
     `)
 
         console.log("¡Registros añadidos con éxito!")
