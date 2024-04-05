@@ -2,7 +2,7 @@ import selectPropertyByIdModel from "../../models/properties/selectPropertyByIdM
 import selectUserByIdModel from "../../models/users/selectUserByIdModel.js"
 import insertBookingModel from "../../models/bookings/insertBookingModel.js"
 import generateError from "../../scripts/generateError.js"
-import sendBookingNotificationEmail from "../../scripts/sendBookingConfirmationEmail.js"
+import sendBookingNotificationEmail from "../../scripts/sendBookingNotificationEmail.js"
 
 const newBookingController = async (req, res, next) => {
     try {
@@ -19,7 +19,7 @@ const newBookingController = async (req, res, next) => {
             throw generateError(400, "No puedes reservar tus propios inmuebles")
         }
 
-        //---- Comprobación de disponibilidad de la reserva ----//
+        //---- TO DO: Comprobación de disponibilidad de la reserva ----//
 
         //---- dueño ----//
         const [owner] = await selectUserByIdModel(property.owner_id)
