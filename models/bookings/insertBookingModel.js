@@ -1,6 +1,6 @@
 import getDb from "../../config/getDb.js"
 
-const insertPropertyModel = async (newBookingData) => {
+const insertBookingModel = async (newBookingData) => {
     const { starting_date, ending_date, tenant_id, property_id } =
         newBookingData
 
@@ -18,4 +18,4 @@ const insertPropertyModel = async (newBookingData) => {
     }
 }
 
-export default insertPropertyModel
+export default insertBookingModel
