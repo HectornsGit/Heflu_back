@@ -3,6 +3,7 @@ import selectUserByIdModel from "../../models/users/selectUserByIdModel.js"
 import insertBookingModel from "../../models/bookings/insertBookingModel.js"
 import generateError from "../../scripts/generateError.js"
 import sendBookingNotificationEmail from "../../scripts/sendBookingNotificationEmail.js"
+import selectBusyBookingDatesModel from "../../models/bookings/selectBusyBookingDatesModel.js"
 
 const newBookingController = async (req, res, next) => {
     try {
@@ -19,7 +20,19 @@ const newBookingController = async (req, res, next) => {
             throw generateError(400, "No puedes reservar tus propios inmuebles")
         }
 
-        //---- TO DO: Comprobación de disponibilidad de la reserva ----//
+        //---- Comprobación de disponibilidad de la reserva ----//
+        const busyDates = await selectBusyBookingDatesModel(req.body.id)
+
+        const formattedBusyDates = busyDates.map(
+            (dateObject) => dateObject.selected_date
+        )
+
+        if (
+            formattedBusyDates.includes(bookingData.starting_date) ||
+            formattedBusyDates.includes(bookingData.ending_date)
+        ) {
+            throw generateError(400, "No puedes reservar en días ocupados")
+        }
 
         //---- dueño ----//
         const [owner] = await selectUserByIdModel(property.owner_id)
