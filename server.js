@@ -3,7 +3,7 @@ import fileUpload from "express-fileupload"
 import cors from "cors"
 import morgan from "morgan"
 
-import { PORT } from "#config/env"
+import { PORT, UPLOADS_DIR } from "#config/env"
 import isAuth from "#middlewares/isAuth"
 
 import userRoutes from "#api/userRoutes"
@@ -16,6 +16,7 @@ app.use(express.json())
 app.use(fileUpload())
 app.use(cors())
 app.use(morgan("common"))
+app.use(express.static(UPLOADS_DIR))
 
 // Middleware que gestiona el token
 app.use(isAuth)
