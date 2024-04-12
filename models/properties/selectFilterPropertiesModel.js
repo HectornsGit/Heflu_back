@@ -1,9 +1,7 @@
 import getDb from "../../config/getDb.js"
 
-const selectFilterPropertiesModel = async (params, id) => {
+const selectFilterPropertiesModel = async (params, ids) => {
     let connection
-
-    const ids = id.ids.join(",").split(",").map(Number)
 
     const country = params.country === undefined ? "%" : `%${params.country}%`
     const maxPrice =
@@ -16,7 +14,7 @@ const selectFilterPropertiesModel = async (params, id) => {
             `SELECT p.id FROM properties p
               WHERE p.country LIKE ?
               AND p.price <= ?
-              AND p.bedrooms >=?
+              AND p.bedrooms >= ?
               AND p.id NOT IN (?)`,
             [country, maxPrice, minRooms, ids]
         )

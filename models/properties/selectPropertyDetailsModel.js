@@ -30,7 +30,7 @@ const selectPropertiesDetailsModel = async (id) => {
           LEFT JOIN properties_images x ON p.id=x.property_id
           LEFT JOIN images i ON x.image_id=i.id
           JOIN users U ON p.owner_id = u.id
-          WHERE p.id=?
+          WHERE p.id IN (?)
           GROUP BY p.id;`,
             [id]
         )
