@@ -3,6 +3,10 @@ import getDb from "../../config/getDb.js"
 const selectFilterPropertiesModel = async (params, ids) => {
     let connection
 
+    if (ids.length === 0 || ids === undefined) {
+        ids.push(0)
+    }
+
     const country = params.country === undefined ? "%" : `%${params.country}%`
     const maxPrice =
         params.maxPrice === undefined ? "9999999999" : params.maxPrice
