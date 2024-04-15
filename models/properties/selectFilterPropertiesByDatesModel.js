@@ -3,21 +3,9 @@ import getDb from "../../config/getDb.js"
 const selectFilterPropertiesByDatesModel = async (params) => {
     let connection
 
-    // ToDo: Sacar a script
-
-    const date = new Date()
-    const year = date.getFullYear()
-    const month = `0${date.getMonth() + 1}`.slice(-2)
-    const day = `0${date.getDate()}`.slice(-2)
-
-    const formattedDate = `${year}-${month}-${day}`
-
-    // Fin ToDo
-
     const startDate =
-        params.startDate === undefined ? formattedDate : params.startDate
-    const endDate =
-        params.endDate === undefined ? formattedDate : params.endDate
+        params.startDate === undefined ? "1900-01-01" : params.startDate
+    const endDate = params.endDate === undefined ? "1900-01-01" : params.endDate
 
     try {
         connection = await getDb()
