@@ -9,7 +9,7 @@ import isAuth from "#middlewares/isAuth"
 import userRoutes from "#api/userRoutes"
 import propertiesRoutes from "#api/propertiesRoutes"
 import bookingsRoutes from "#api/bookingsRoutes"
-
+import reviewsRoutes from "#api/reviewsRoutes"
 const app = express()
 
 app.use(express.json())
@@ -25,7 +25,7 @@ app.use(isAuth)
 app.use("/users", userRoutes)
 app.use("/properties", propertiesRoutes)
 app.use("/bookings", bookingsRoutes)
-
+app.use("/reviews", reviewsRoutes)
 // Middleware ruta no encontrada
 app.use((req, res) => {
     res.status(404)
