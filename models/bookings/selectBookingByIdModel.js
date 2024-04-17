@@ -6,7 +6,10 @@ const selectBookingByIdModel = async (id) => {
         connection = await getDb()
 
         let [booking] = await connection.query(
-            `SELECT * FROM bookings WHERE id = ?`,
+            `SELECT bookings.*,P.owner_id as owner_id
+            FROM bookings
+            JOIN properties P on P.id = bookings.property_id 
+            WHERE bookings.id = ?`,
             [id]
         )
         return booking
