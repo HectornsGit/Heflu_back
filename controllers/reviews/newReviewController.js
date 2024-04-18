@@ -1,9 +1,10 @@
 import generateError from "#scripts/generateError"
+import validateSchema from "#scripts/validateSchema"
 import selectBookingByIdModel from "../../models/bookings/selectBookingByIdModel.js"
 import selectTenantReviewsByIdModel from "../../models/reviews/selectTenantReviewsByIdModel.js"
 import selectOwnerReviewsByIdModel from "../../models/reviews/selectOwnerReviewsbyIdModel.js"
 import insertReviewModel from "../../models/reviews/insertReviewModel.js"
-
+import newReviewSchema from "../../schemas/newReviewSchema.js"
 const newReviewController = async (req, res, next) => {
     try {
         const { id } = req.user
@@ -14,6 +15,7 @@ const newReviewController = async (req, res, next) => {
             rating: req.body.rating,
             bookingId,
         }
+        await validateSchema(newReviewSchema, newReviewData)
 
         // Comprueba que la reserva sea una confirmada.
         if (booking.is_confirmed === 0) {
@@ -30,8 +32,6 @@ const newReviewController = async (req, res, next) => {
                 "¡Tienes que esperar a que acabe la estancia para valorar!"
             )
         }
-
-        // TO DO: Esquemas de JOI
 
         // Si el usuario ha sido el inquilino:
         if (id === booking.tenant_id) {
