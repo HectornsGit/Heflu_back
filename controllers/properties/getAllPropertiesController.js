@@ -2,7 +2,6 @@ import selectAllPropertiesModel from "../../models/properties/selectAllPropertie
 import selectFilterPropertiesByDatesModel from "../../models/properties/selectFilterPropertiesByDatesModel.js"
 import selectFilterPropertiesModel from "../../models/properties/selectFilterPropertiesModel.js"
 import selectPropertyDetailsModel from "../../models/properties/selectPropertyDetailsModel.js"
-import generateError from "../../scripts/generateError.js"
 
 const getAllPropertiesController = async (req, res, next) => {
     try {
@@ -31,7 +30,11 @@ const getAllPropertiesController = async (req, res, next) => {
             )
 
             if (filterProperties.length < 1) {
-                throw generateError(404, "No se han encontrado propiedades")
+                return res.status(204).send({
+                    status: "ok",
+                    data: [],
+                    message: "No se encontraron propiedades",
+                })
             }
 
             const propertyIds = filterProperties.map((property) => property.id)
@@ -44,7 +47,11 @@ const getAllPropertiesController = async (req, res, next) => {
 
         // Si viene vacío, lanzamos un error
         if (properties.lenght < 1) {
-            throw generateError(404, "No se han encontrado propiedades")
+            return res.status(204).send({
+                status: "ok",
+                data: [],
+                message: "No se encontraron propiedades",
+            })
         }
 
         // Cambiar formato de las imágenes a un array
