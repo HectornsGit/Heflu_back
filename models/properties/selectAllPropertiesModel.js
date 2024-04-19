@@ -13,6 +13,7 @@ const selectAllPropertiesModel = async () => {
             p.price,
             p.bedrooms,
             p.bathrooms,
+            p.owner_id,
           GROUP_CONCAT(i.name) AS property_images,
           ROUND((SELECT AVG(r.rating)
             FROM reviews r, bookings b, properties p
