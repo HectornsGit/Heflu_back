@@ -17,6 +17,7 @@ const getUserController = async (req, res, next) => {
             avatar: user.avatar,
             bio: user.bio,
             created_at: user.created_at,
+            media_rating: user.media_rating,
         }
 
         res.status(200).send({

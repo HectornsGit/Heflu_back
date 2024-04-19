@@ -6,9 +6,17 @@ const selectUserByIdModel = async (id) => {
         connection = await getDb()
 
         let [users] = await connection.query(
-            `SELECT * FROM users WHERE id = ?`,
+            `SELECT *,
+            ROUND((SELECT AVG(r.rating)
+              FROM reviews r, bookings b, properties p
+              WHERE p.owner_id = u.id
+              AND p.id = b.property_id
+              AND b.id = r.booking_id), 1) AS media_rating
+            FROM users u 
+               WHERE u.id = ?`,
             [id]
         )
+        console.log("modelo", users)
         return users
     } finally {
         if (connection) connection.release()
