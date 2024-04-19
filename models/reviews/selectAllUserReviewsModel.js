@@ -1,6 +1,6 @@
 import getDb from "../../config/getDb.js"
 
-const selectPropertiesDetailsModel = async (id) => {
+const selectAllUserReviewsModel = async (id) => {
     let connection
     try {
         connection = await getDb()
@@ -29,4 +29,4 @@ const selectPropertiesDetailsModel = async (id) => {
     }
 }
 
-export default selectPropertiesDetailsModel
+export default selectAllUserReviewsModel
