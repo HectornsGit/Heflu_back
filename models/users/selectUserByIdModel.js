@@ -16,7 +16,6 @@ const selectUserByIdModel = async (id) => {
                WHERE u.id = ?`,
             [id]
         )
-        console.log("modelo", users)
         return users
     } finally {
         if (connection) connection.release()
