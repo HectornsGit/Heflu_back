@@ -1,4 +1,3 @@
-import generateError from "../../scripts/generateError.js"
 import selectBookingsByOwnerIdModel from "../../models/bookings/selectBookingsByOwnerIdModel.js"
 
 const getBookingsController = async (req, res, next) => {
@@ -7,7 +6,11 @@ const getBookingsController = async (req, res, next) => {
         const bookings = await selectBookingsByOwnerIdModel(id)
 
         if (bookings.length < 1) {
-            throw generateError(404, "No tienes ninguna reserva pendiente.")
+            return res.status(204).send({
+                status: "ok",
+                data: [],
+                message: "¡No has participado en ninguna estancia todavía!",
+            })
         }
 
         let formattedBookings = []
