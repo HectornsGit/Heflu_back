@@ -29,7 +29,7 @@ NodeJS + Express developed backend application for renting properties.
  - Run the script `dev`.
  - Use a HTTP client of your choice to make the requests following the guidelines in [Endpoints](#endpoihts).
 ## Endpoints
-|Method|Endpoint|Headers|Query Params|Path Params|Description|Example Input|Standard Output
+|Method|Endpoint|Headers|Query Params|Path Params|Description|Standard Input|Standard Output
 |--|--|--|--|--|--|--|--|
 |POST|/users|null|null|null|Creates a new user| email:string, password:string, name:string, avatar:picture, bio:string|"status":  "ok", "message":  "Usuario creado"
 |GET |/users  |null|null|id (int)|Shows user data  | null |"data":  { "user":  {"id": int,"email":  string,"name":string,"avatar": string, "bio":string","created_at": Date ,"media_rating": Float}}
@@ -78,7 +78,7 @@ Aplicación de backend desarrollada con NodeJS + Express para el alquiler de pro
 
 
 ## Endpoints
-|Method|Endpoint|Headers|Query Params|Path Params|Description|Example Input|Standard Output
+|Métodos|Endpoint|Encabezados|Parámetros de consulta|Parámetros de ruta|Descripción|Entrada estándar|Salida estándar
 |--|--|--|--|--|--|--|--|
 |POST|/users|null|null|null|Crea un nuevo usuario| email:string, password:string, name:string, avatar:picture, bio:string|"status":  "ok", "message":  "Usuario creado"
 |GET |/users  |null|null|id (int)|Muestra la información del usuario | null |"data":  { "user":  {"id": int,"email":  string,"name":string,"avatar": string, "bio":string","created_at": Date ,"media_rating": Float}}
