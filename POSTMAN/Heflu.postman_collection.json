@@ -1,0 +1,542 @@
+{
+	"info": {
+		"_postman_id": "cf672f77-fd44-4638-bb42-946201de90f6",
+		"name": "Heflu",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30316809"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "New User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "hello.heflu@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Ab123456.",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Heflu",
+									"type": "text"
+								},
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/C:/Users/hector/Downloads/54hjww.jpg"
+								},
+								{
+									"key": "bio",
+									"value": "Soy Heflu, la aplicación de alguiler de inmuebles favorita de todos :)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/users",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User 1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\":\"usuario1@example.com\",\r\n\"password\":\"Usuario1.\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User 5",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\":\"usuario5@example.com\",\r\n\"password\":\"Usuario5.\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImhlY3RvciIsImlhdCI6MTcxMTk1ODMxMiwiZXhwIjoxNzE0NTUwMzEyfQ.GVJof9srfvhxgjnVS31GiBCYBHv-pNJnl-gTXWQMqqY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/users/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validate user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/users/validate/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"validate",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Properties",
+			"item": [
+				{
+					"name": "New Property",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEyMDUxOTM3LCJleHAiOjE3MTQ2NDM5Mzd9.ZttPE8khQY-NbYitHZ7GnKc6WIMtYflc-fYWKdw1qME",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image1",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "image2",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								},
+								{
+									"key": "image3",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								},
+								{
+									"key": "image4",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								},
+								{
+									"key": "image5",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "Cabaña cerca de Manzaneda",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Lugar idílico entre las montañas",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "Otros",
+									"type": "text"
+								},
+								{
+									"key": "location",
+									"value": "Galicia",
+									"type": "text"
+								},
+								{
+									"key": "country",
+									"value": "España",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "300",
+									"type": "text"
+								},
+								{
+									"key": "area",
+									"value": "800",
+									"type": "text"
+								},
+								{
+									"key": "bedrooms",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "bathrooms",
+									"value": "4",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/properties",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"properties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get properties",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/properties?maxPrice=100&country=irlanda",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"properties"
+							],
+							"query": [
+								{
+									"key": "maxPrice",
+									"value": "100"
+								},
+								{
+									"key": "bedrooms",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "country",
+									"value": "irlanda"
+								},
+								{
+									"key": "startDate",
+									"value": "2024-04-21",
+									"disabled": true
+								},
+								{
+									"key": "endDate",
+									"value": "2024-04-26",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get detailed Property",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/properties/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"properties",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bookings",
+			"item": [
+				{
+					"name": "New Booking",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImlhdCI6MTcxMjE2NTcwMiwiZXhwIjoxNzE0NzU3NzAyfQ.ozDhdWwJ0FDZ2seI6kLq7_GgPo24WjnHDL5i9fVtaKc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 12,\r\n    \"starting_date\": \"2024-05-26\",\r\n    \"ending_date\": \"2024-05-30\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/bookings",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"bookings"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Confirm Booking",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEyMDUxOTM3LCJleHAiOjE3MTQ2NDM5Mzd9.ZttPE8khQY-NbYitHZ7GnKc6WIMtYflc-fYWKdw1qME",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/bookings/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"bookings",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete booking",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEyMDUxOTM3LCJleHAiOjE3MTQ2NDM5Mzd9.ZttPE8khQY-NbYitHZ7GnKc6WIMtYflc-fYWKdw1qME",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/bookings/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"bookings",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get pending bookings",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwibmFtZSI6IlVzdWFyaW8gNSIsImlhdCI6MTcxMzEyNTIwMCwiZXhwIjoxNzE1NzE3MjAwfQ.HNv_pseLyOShC6-Chkavqb-cx6t89HqEeTXJ6dJ_VuU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/bookings/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"bookings",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reviews",
+			"item": [
+				{
+					"name": "Get pending reviews",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IlVzdWFyaW8gMSIsImlhdCI6MTcxMzc4NDA4MiwiZXhwIjoxNzE2Mzc2MDgyfQ.GKC2qvAz4Ipg116phnV2jbNl36n7-n9ZXJkdPoRBQ9U",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwibmFtZSI6IlVzdWFyaW8gNiIsImlhdCI6MTcxMzc5NTA0NSwiZXhwIjoxNzE2Mzg3MDQ1fQ.zRhOmPde1Cj8VuXTJT6Kt6m1Lz0VC3vpRXRehrF0k_U",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwibmFtZSI6IlVzdWFyaW8gNSIsImlhdCI6MTcxMzc5NTEyNywiZXhwIjoxNzE2Mzg3MTI3fQ.PrbBfk6137WED0Gnf3zKCu2cn1pSEk_FWCakfZ2Gmdc",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/reviews/pending",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reviews",
+								"pending"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Review",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IlVzdWFyaW8gMiIsImlhdCI6MTcxMzM0Mzg4OCwiZXhwIjoxNzE1OTM1ODg4fQ.lTJyeSJJ-ouu8k11_3BWvzc-CLEOvcfXE4kDc6-u5-U",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwibmFtZSI6IlVzdWFyaW8gNSIsImlhdCI6MTcxMzM0NDM3NywiZXhwIjoxNzE1OTM2Mzc3fQ.rxKpRd0h2zjvfBI02CPyo1Aa-vLIuAFH7txXlSwfY0E",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwibmFtZSI6IlVzdWFyaW8gNiIsImlhdCI6MTcxMzM0NDQ3MiwiZXhwIjoxNzE1OTM2NDcyfQ.zjAsE16wD1WUzn0G59tv5ddZIC7Rz09vuDM5g1wckgo",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"comment\":\"Un crack sobre cracks\",\"rating\":5}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/reviews/22",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reviews",
+								"22"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
