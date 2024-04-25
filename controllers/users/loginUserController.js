@@ -32,6 +32,7 @@ const loginUserController = async (req, res, next) => {
 
         // Devuelve el token
         res.status(200).send({
+            status: "ok",
             message: "Conectado correctamente",
             data: { token },
         })
