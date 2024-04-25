@@ -8,7 +8,6 @@ import generateError from "../../scripts/generateError.js"
 const activateUserController = async (req, res, next) => {
     try {
         const registration_code = req.params.registration_code
-        console.log(req.params)
         const activatedUser = await activateUserModel(registration_code)
 
         if (activatedUser === undefined) {
@@ -29,7 +28,7 @@ const activateUserController = async (req, res, next) => {
         res.send({
             status: "ok",
             message: "Cuenta activada correctamente",
-            token,
+            data: { token },
         })
     } catch (err) {
         next(err)
