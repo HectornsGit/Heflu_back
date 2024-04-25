@@ -8,6 +8,7 @@ const {
     MYSQL_DATABASE,
     RESEND_API_KEY,
     SECRET,
+    FRONTEND_PORT,
 } = process.env
 
 const { PORT } = process.env || 3000
@@ -21,4 +22,5 @@ export {
     MYSQL_DATABASE,
     RESEND_API_KEY,
     SECRET,
+    FRONTEND_PORT,
 }
