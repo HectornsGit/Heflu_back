@@ -10,9 +10,10 @@ const router = express.Router()
 
 router.post("/", newUserController)
 
-router.get("/validate/:registration_code", activateUserController)
+router.put("/validate/:registration_code", activateUserController)
 
 router.post("/login", loginUserController)
+
 router.get("/reviews/:id", isUser, getUserReviewsController)
 
 router.get("/:id", isUser, getUserController)
