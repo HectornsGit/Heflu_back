@@ -1,6 +1,7 @@
 import insertImageModel from "../../models/images/insertImageModel.js"
 import insertPropertyModel from "../../models/properties/insertPropertyModel.js"
 import insertImagePropertyModel from "../../models/properties_images/insertPropertyImageModel.js"
+import selectProperyDetailsModel from "../../models/properties/selectPropertyDetailsModel.js"
 
 import validateSchema from "../../scripts/validateSchema.js"
 import newPropertySchema from "../../schemas/newPropertySchema.js"
@@ -47,20 +48,35 @@ const newPropertyController = async (req, res, next) => {
             //---- Inserción en la base de datos ----////
 
             // Inserción de la propiedad a la tabla de propiedades.
-            const newPropertyID = await insertPropertyModel(newPropertyData, id)
+            let newPropertyID = await insertPropertyModel(newPropertyData, id)
+
+            newPropertyData.id = await newPropertyID
 
             // Inserción de las imágenes a la tabla de imágenes.
             const imageIds = imageNames.map(async (name) => {
-                return await insertImageModel(name)
+                const imageId = await insertImageModel(name)
+
+                return imageId
             })
 
             // Vinculación de imágenes con las propiedades.
-            imageIds.forEach(async (id) =>
-                insertImagePropertyModel(await id, newPropertyID)
+            for (let id of imageIds) {
+                const newId = await insertImagePropertyModel(
+                    await id,
+                    newPropertyID
+                )
+            }
+
+            const [newProperty] = await selectProperyDetailsModel(
+                await newPropertyID
             )
+
+            newProperty.property_images =
+                newProperty.property_images?.split(",")
 
             res.status(200).send({
                 status: "ok",
+                data: newProperty,
                 message: "Propiedad registrada",
             })
         } else {
