@@ -12,6 +12,12 @@ const isAuth = (req, res, next) => {
         try {
             tokenInfo = jwt.verify(authorization, SECRET)
         } catch {
+            if (authorization == "null") {
+                throw generateError(
+                    401,
+                    "Tienes que ingresar para realizar esa acción"
+                )
+            }
             throw generateError(401, "Token incorrecto")
         }
 
