@@ -51,7 +51,7 @@ const newBookingController = async (req, res, next) => {
         res.status(200).send({
             status: "ok",
             message:
-                "Reserva creada con éxito, cuando el casero decida si acepta la reserva se notificará por email.",
+                "Solicitud enviada con éxito, cuando el casero decida si acepta la reserva se notificará por email.",
         })
     } catch (error) {
         next(error)

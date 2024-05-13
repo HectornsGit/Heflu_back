@@ -3,7 +3,7 @@ import joiErrorMessages from "./joiErrorMessages.js"
 
 const newPropertySchema = joi.object({
     name: joi.string().required().messages(joiErrorMessages),
-    description: joi.string().max(200).required().messages(joiErrorMessages),
+    description: joi.string().max(1000).required().messages(joiErrorMessages),
     type: joi
         .string()
         .valid("Chalet", "Apartamento", "Casa rural", "Otros")

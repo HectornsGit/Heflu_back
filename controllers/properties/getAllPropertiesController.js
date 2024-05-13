@@ -46,7 +46,7 @@ const getAllPropertiesController = async (req, res, next) => {
         }
 
         // Si viene vacío, lanzamos un error
-        if (properties.lenght < 1) {
+        if (properties.length < 1) {
             return res.status(204).send({
                 status: "ok",
                 data: [],
