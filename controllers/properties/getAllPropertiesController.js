@@ -32,7 +32,6 @@ const getAllPropertiesController = async (req, res, next) => {
             if (filterProperties.length < 1) {
                 return res.status(204).send({
                     status: "ok",
-                    data: [],
                     message: "No se encontraron propiedades",
                 })
             }
@@ -49,7 +48,6 @@ const getAllPropertiesController = async (req, res, next) => {
         if (properties.length < 1) {
             return res.status(204).send({
                 status: "ok",
-                data: [],
                 message: "No se encontraron propiedades",
             })
         }
