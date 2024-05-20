@@ -10,10 +10,10 @@ const newPropertySchema = joi.object({
         .messages(joiErrorMessages),
     location: joi.string().max(50).required().messages(joiErrorMessages),
     country: joi.string().max(50).required().messages(joiErrorMessages),
-    price: joi.number().required().messages(joiErrorMessages),
-    area: joi.number().required().messages(joiErrorMessages),
-    bedrooms: joi.number().required().messages(joiErrorMessages),
-    bathrooms: joi.number().required().messages(joiErrorMessages),
+    price: joi.number().min(1).required().messages(joiErrorMessages),
+    area: joi.number().min(1).required().messages(joiErrorMessages),
+    bedrooms: joi.number().min(1).required().messages(joiErrorMessages),
+    bathrooms: joi.number().min(1).required().messages(joiErrorMessages),
 })
 
 export default newPropertySchema
