@@ -23,7 +23,7 @@ const getUserController = async (req, res, next) => {
         const userProperties = await selectPropertiesByOwnerIdModel(id)
 
         res.status(200).send({
-            data: { user: userData, propeties: userProperties },
+            data: { user: userData, properties: userProperties },
         })
     } catch (error) {
         next(error)
