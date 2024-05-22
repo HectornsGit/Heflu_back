@@ -13,7 +13,10 @@ const deleteBookingController = async (req, res, next) => {
         const [booking] = await selectBookingByIdModel(id)
         const [property] = await selectPropertyByIdModel(booking.property_id)
 
-        if (property.owner_id !== req.user.id) {
+        if (
+            property.owner_id !== req.user.id &&
+            booking.tenant_id !== req.user.id
+        ) {
             throw generateError(
                 400,
                 "No puedes eliminar las reservas de otro usuario"
