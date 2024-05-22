@@ -1,5 +1,6 @@
 import generateError from "../../scripts/generateError.js"
 import selectUserByIdModel from "../../models/users/selectUserByIdModel.js"
+import selectPropertiesByOwnerIdModel from "../../models/properties/selectPropertiesByOwnerIdModel.js"
 
 const getUserController = async (req, res, next) => {
     const { id } = req.params
@@ -19,9 +20,10 @@ const getUserController = async (req, res, next) => {
             created_at: user.created_at,
             media_rating: user.media_rating,
         }
+        const userProperties = await selectPropertiesByOwnerIdModel(id)
 
         res.status(200).send({
-            data: { user: userData },
+            data: { user: userData, propeties: userProperties },
         })
     } catch (error) {
         next(error)
