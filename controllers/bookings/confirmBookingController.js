@@ -36,7 +36,7 @@ const confirmBookingController = async (req, res, next) => {
             id
         )
 
-        if (bookingsToCancel.length > 0) {
+        if ((await bookingsToCancel.length) > 0) {
             for (let booking of bookingsToCancel) {
                 deleteBookingModel(booking.id)
 
@@ -44,13 +44,18 @@ const confirmBookingController = async (req, res, next) => {
                 const [tenant] = await selectUserByIdModel(booking.tenant_id)
 
                 //---- Envío de el email de notificación al dueño de la reserva. ----//
-                sendBookingCancellationEmail(tenant.email, property)
+                sendBookingCancellationEmail(await tenant.email, property)
             }
-        }
-        //---- Envío de el email de notificación al dueño de la reserva. ----//
-        sendBookingConfirmationEmail(tenant.email, property)
 
-        res.status(200).send({
+            //---- Envío de el email de notificación al dueño de la reserva. ----//
+            sendBookingConfirmationEmail(tenant.email, property)
+
+            return res.status(200).send({
+                status: "ok",
+                message: "¡Reserva confirmada!",
+            })
+        }
+        return res.status(200).send({
             status: "ok",
             message: "¡Reserva confirmada!",
         })
