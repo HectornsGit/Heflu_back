@@ -38,11 +38,13 @@ const getUserController = async (req, res, next) => {
                 formattedProperties.push(property)
             }
 
-            res.status(200).send({
+            return res.status(200).send({
                 data: { user: userData, properties: formattedProperties },
             })
         }
-        res.status(200).send({ data: { user: userData, properties: [] } })
+        return res
+            .status(200)
+            .send({ data: { user: userData, properties: [] } })
     } catch (error) {
         next(error)
     }
