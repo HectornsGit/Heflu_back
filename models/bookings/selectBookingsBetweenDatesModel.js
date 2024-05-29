@@ -10,8 +10,22 @@ const selectBookingsBetweenDatesModel = async (
     try {
         connection = await getDb()
         const [bookings] = await connection.query(
-            `SELECT * FROM bookings WHERE starting_date BETWEEN ? AND ? AND property_id= ? AND id != ?`,
-            [starting_date, ending_date, property_id, id]
+            `SELECT * FROM bookings b 
+            WHERE (b.starting_date BETWEEN ? AND ?
+            OR b.ending_date BETWEEN ? AND ?
+            OR (b.starting_date < ? AND b.ending_date > ?))
+            AND b.property_id = ? 
+            AND b.id != ?;`,
+            [
+                starting_date,
+                ending_date,
+                starting_date,
+                ending_date,
+                starting_date,
+                ending_date,
+                property_id,
+                id,
+            ]
         )
         return bookings
     } finally {
