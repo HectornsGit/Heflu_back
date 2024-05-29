@@ -16,8 +16,11 @@ const getUserBookingsController = async (req, res, next) => {
 
         for (let booking of bookings) {
             booking.images = booking.images.split(",")
+            booking.starting_date += "GMT+01:00"
+            booking.ending_date += "GMT+01:00"
             formattedBookings.push(booking)
         }
+        console.log(formattedBookings)
         res.status(200).send({
             status: "ok",
             data: formattedBookings,
