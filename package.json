@@ -4,15 +4,6 @@
     "description": "Backend desarrollado en nodejs de la plataforma de alquiler de alojamientos en línea Heflu",
     "main": "index.js",
     "type": "module",
-    "imports": {
-        "#config/*": "./config/*.js",
-        "#api/*": "./api/*.js",
-        "#controllers/*/*": "./controllers/*/*.js",
-        "#middlewares/*": "./middlewares/*.js",
-        "#models/*": "./models/*/*.js",
-        "#public/*": "./public/*",
-        "#scripts/*": "./scripts/*.js"
-    },
     "scripts": {
         "dev": "nodemon server.js",
         "initDb": "node ./config/initDb.js",

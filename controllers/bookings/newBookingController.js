@@ -6,7 +6,7 @@ import sendBookingNotificationEmail from "../../scripts/sendBookingNotificationE
 import selectBusyBookingDatesModel from "../../models/bookings/selectBusyBookingDatesModel.js"
 
 import newBookingSchema from "../../schemas/newBookingSchema.js"
-import validateSchema from "#scripts/validateSchema"
+import validateSchema from "../../scripts/validateSchema"
 
 const newBookingController = async (req, res, next) => {
     try {
