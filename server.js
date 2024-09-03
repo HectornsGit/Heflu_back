@@ -3,13 +3,13 @@ import fileUpload from "express-fileupload"
 import cors from "cors"
 import morgan from "morgan"
 
-import { PORT, UPLOADS_DIR } from "#config/env"
-import isAuth from "#middlewares/isAuth"
+import { PORT, UPLOADS_DIR } from "./config/env.js"
+import isAuth from "./middlewares/isAuth.js"
 
-import userRoutes from "#api/userRoutes"
-import propertiesRoutes from "#api/propertiesRoutes"
-import bookingsRoutes from "#api/bookingsRoutes"
-import reviewsRoutes from "#api/reviewsRoutes"
+import userRoutes from "./api/userRoutes.js"
+import propertiesRoutes from "./api/propertiesRoutes.js"
+import bookingsRoutes from "./api/bookingsRoutes.js"
+import reviewsRoutes from "./api/reviewsRoutes.js"
 const app = express()
 
 app.use(express.json())

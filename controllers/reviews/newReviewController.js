@@ -1,10 +1,11 @@
-import generateError from "#scripts/generateError"
-import validateSchema from "#scripts/validateSchema"
+import generateError from "../../scripts/generateError.js"
+import validateSchema from "../../scripts/validateSchema.js"
 import selectBookingByIdModel from "../../models/bookings/selectBookingByIdModel.js"
 import selectTenantReviewsByIdModel from "../../models/reviews/selectTenantReviewsByIdModel.js"
 import selectOwnerReviewsByIdModel from "../../models/reviews/selectOwnerReviewsbyIdModel.js"
 import insertReviewModel from "../../models/reviews/insertReviewModel.js"
 import newReviewSchema from "../../schemas/newReviewSchema.js"
+
 const newReviewController = async (req, res, next) => {
     try {
         const { id } = req.user
